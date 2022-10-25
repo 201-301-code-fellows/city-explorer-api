@@ -27,7 +27,7 @@ Server will be hosted on Heroku
 
 ## [Motivation]
 
-This project is part of a class requirement for Code Fellows 301 lab-06.
+This project is part of a class requirement for Code Fellows 301 lab-07.
 
 ## [Overview]
 
@@ -44,7 +44,6 @@ This project is part of a class requirement for Code Fellows 301 lab-06.
 
 ## [Code Style]
 
-This lets the users know that you have used a particular code style and helps them when contributing to your project so that the whole project code style stays the same. Some common code styles: standard, xo, etc.
 
 ## [Screenshots]
 
@@ -56,6 +55,7 @@ This lets the users know that you have used a particular code style and helps th
 
 
 ## [Code Examples]
+
 
 ## [Installation]
 
