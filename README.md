@@ -32,7 +32,7 @@ This project is part of a class requirement for Code Fellows 301 lab-06.
 ## [Overview]
 
 
-<img src="https://github.com/tm-LBenson/city-explorer/blob/main/public/assets/WRRC-lab-06.png?raw=true"
+<img src="https://github.com/tm-LBenson/city-explorer/blob/main/public/assets/WRRC-lab-07.png?raw=true"
      alt="WRRC Diagram"
      style="float: left; margin-right: 10px; width:50%" />
      
