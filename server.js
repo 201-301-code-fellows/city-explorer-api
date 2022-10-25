@@ -20,15 +20,28 @@ app.use(cors());
 app.get('/', (req, res, next) => {
 
   try {
-    const cityName = req.query.city_name
-    const dataToGroom = weatherData.find(city => city?.city_name === cityName);
-    const dataObject = new Forecast(dataToGroom);
-    const dataToSend = {
-      lat: dataObject.lat,
-      lon: dataObject.lon,
-      data: dataObject
+    const { lat, lon, ...rest } = req.query
+    console.log(lat)
+    const cityName = req.query?.city_name
+    const dataToGroom = weatherData.find(city => {
+      return Math.floor(city?.lat) === Math.floor(lat) && Math.floor(city?.lon) === Math.floor(lon)
     }
-    console.log(dataToSend)
+
+
+    )
+    const dataObject = new Forecast(dataToGroom);
+    console.log(dataObject)
+    const arrayToGroom = dataObject.data.map(day => {
+      return ({
+        date: day.datetime,
+        description: `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description}`
+
+      })
+    })
+    const dataToSend = {
+      description: arrayToGroom
+    }
+
     res.status(200).send(dataToSend);
   } catch (error) {
     // if I have an error, this will create a new instance of the Error Object that lives in Express
@@ -46,8 +59,9 @@ app.get('*', (req, res) => {
 
 class Forecast {
   constructor(cityData) {
-    this.lat = cityData.lat
+    this.data = [...cityData.data]
     this.lon = cityData.lon
+    this.lat = cityData.lat
   }
 }
 
