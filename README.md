@@ -23,7 +23,7 @@ Actual time needed to complete:
 
 
 Live view on:  
-https://tm-lbenson-city-explorer.netlify.app/
+Server will be hosted on Heroku
 
 ## [Motivation]
 
