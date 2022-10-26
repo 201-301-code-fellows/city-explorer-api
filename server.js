@@ -17,7 +17,7 @@ app.use(cors());
 
 
 /* PATHS */
-app.get('/', (req, res, next) => {
+app.get('/weather', (req, res, next) => {
 
   try {
     const { lat, lon, ...rest } = req.query
