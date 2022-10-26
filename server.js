@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const cors = require('cors');
-let weatherData = require('./data/weather.json')
-
+const axios = require('axios');
+const { response } = require('express');
 const port = process.env.PORT || 3002
 
 
@@ -14,35 +14,51 @@ const port = process.env.PORT || 3002
 /* MIDDLEWARE */
 
 app.use(cors());
+app.use(express.static('public'))
+
+/* API CALLS */
+const getWeather = async (latitude, longitude) => {
+  try {
+    const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}`)
+    if (response.status === 200) {
+
+      return response
+    }
+
+  }
+
+  catch (error) {
+
+    console.log(error.code)
+    const weatherError = error
+
+    return weatherError
+  }
+}
+
+
+
+
 
 
 /* PATHS */
-app.get('/weather', (req, res, next) => {
+
+app.get('/', (req, res) => {
+  res.status(200).render('./index.html')
+})
+
+
+app.get('/weather', async (req, res, next) => {
 
   try {
     const { lat, lon, ...rest } = req.query
-    console.log(lat)
-    const cityName = req.query?.city_name
-    const dataToGroom = weatherData.find(city => {
-      return Math.floor(city?.lat) === Math.floor(lat) && Math.floor(city?.lon) === Math.floor(lon)
-    }
+    const weatherData = await getWeather(lat, lon)
+    console.log(weatherData.data.data)
+    const dataArray = weatherData.data.data.map(day => {
+      return new Forecast(day)
+    });
 
-
-    )
-    const dataObject = new Forecast(dataToGroom);
-    console.log(dataObject)
-    const arrayToGroom = dataObject.data.map(day => {
-      return ({
-        date: day.datetime,
-        description: `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description}`
-
-      })
-    })
-    const dataToSend = {
-      description: arrayToGroom
-    }
-
-    res.status(200).send(dataToSend);
+    res.status(200).send(dataArray);
   } catch (error) {
     // if I have an error, this will create a new instance of the Error Object that lives in Express
     next(error);
@@ -59,9 +75,8 @@ app.get('*', (req, res) => {
 
 class Forecast {
   constructor(cityData) {
-    this.data = [...cityData.data]
-    this.lon = cityData.lon
-    this.lat = cityData.lat
+    this.date = cityData.valid_date;
+    this.description = `Low of ${cityData.low_temp}, high of ${cityData.high_temp} with ${cityData.weather.description}`;
   }
 }
 
@@ -69,6 +84,7 @@ class Forecast {
 /* ERROR HANDLE */
 
 app.use((e, req, res, next) => {
+  console.log(e.message)
   res.status(500).send(`${req.query.city_name} was not found!
   ${e}`);
 });
