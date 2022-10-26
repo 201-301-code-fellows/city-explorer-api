@@ -1,7 +1,10 @@
 {
   "name": "city-explorer-api",
   "version": "1.0.0",
-  "description": "---------------------------------------\r Number and name of feature: Feature 1: Setting up express",
+  "engines": {
+    "node": " 16.18.0"
+  },
+  "description": "Express API for code Fellows",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
