@@ -71,7 +71,7 @@ Actual time needed to complete: 3 hours
 ---
 
 Live view on:  
-Server will be hosted on Heroku
+https://lbenson-city-explorer.herokuapp.com/
 
 ## [Motivation]
 
