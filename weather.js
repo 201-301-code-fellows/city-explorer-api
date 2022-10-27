@@ -1,5 +1,5 @@
 const { getWeather } = require('./APICalls.js')
-const { Forecast } = require('./Classes.js')
+
 
 
 exports.getWeatherCallback = async (req, res, next) => {
@@ -17,3 +17,10 @@ exports.getWeatherCallback = async (req, res, next) => {
   }
 };
 
+
+class Forecast {
+  constructor(cityData) {
+    this.date = cityData.valid_date;
+    this.description = `Low of ${cityData.low_temp}, high of ${cityData.high_temp} with ${cityData.weather.description}`;
+  }
+}
