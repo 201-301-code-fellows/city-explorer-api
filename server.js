@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const cors = require('cors');
-const axios = require('axios');
 const port = process.env.PORT || 3002
 const getMovies = require('./movies.js')
 const getWeather = require('./weather.js')
