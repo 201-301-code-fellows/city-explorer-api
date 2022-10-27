@@ -2,6 +2,34 @@
 
 ---
 
+Number and name of feature: Feature 1: Adding API for weather
+
+Estimate of time needed to complete: 1 Hour
+
+Start time: 1530
+
+Finish time: 1630
+
+Actual time needed to complete: 1 Hour
+
+---
+
+---
+
+Number and name of feature: Feature 2: Adding API for movies
+
+Estimate of time needed to complete: 1 Hour
+
+Start time: 1630
+
+Finish time: 1700
+
+Actual time needed to complete: 30 mins
+
+---
+
+---
+
 Number and name of feature: Feature 1: Setting up express
 
 Estimate of time needed to complete: 1 Hour

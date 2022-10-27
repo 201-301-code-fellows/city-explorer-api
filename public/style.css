@@ -1,0 +1,8 @@
+body {
+  background-color: rgba(97, 40, 40, 0.469);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+}
