@@ -3,7 +3,7 @@ const { Forecast } = require('./Classes.js')
 
 
 exports.getWeatherCallback = async (req, res, next) => {
-
+  
   try {
     const { lat, lon } = req.query
     const weatherData = await getWeather(lat, lon)
