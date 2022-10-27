@@ -1,19 +1,20 @@
-const axios = require('axios')
+const { getMovies } = require('./APICalls.js')
+const { MovieList } = require('./Classes.js')
 
-const getMovies = async (cityName) => {
+
+const getMoviesCallback = async (req, res, next) => {
+
   try {
-    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`)
-    if (response.status === 200) {
-      return response
-    }
-  }
-  catch (error) {
+    const movieData = await getMovies(req.query.city_name)
+    const dataArray = movieData.data.results.map(movie => {
+      return new MovieList(movie)
+    });
 
-    console.log(error.code)
-    const movieError = error
-    console.log('log')
-    return movieError
+    res.status(200).send(dataArray);
+  } catch (error) {
+    next(error);
   }
-}
+};
 
-exports.module = { getMovies }
+
+exports.module = { getMoviesCallback }
