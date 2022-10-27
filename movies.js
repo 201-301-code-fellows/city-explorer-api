@@ -2,7 +2,7 @@ const { getMovies } = require('./APICalls.js')
 const { MovieList } = require('./Classes.js')
 
 
-const getMoviesCallback = async (req, res, next) => {
+exports.getMoviesCallback = async (req, res, next) => {
 
   try {
     const movieData = await getMovies(req.query.city_name)
@@ -17,4 +17,3 @@ const getMoviesCallback = async (req, res, next) => {
 };
 
 
-exports.module = { getMoviesCallback }

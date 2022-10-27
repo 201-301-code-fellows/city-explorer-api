@@ -2,7 +2,7 @@ const { getWeather } = require('./APICalls.js')
 const { Forecast } = require('./Classes.js')
 
 
-const getWeatherCallback = async (req, res, next) => {
+exports.getWeatherCallback = async (req, res, next) => {
 
   try {
     const { lat, lon } = req.query
@@ -17,4 +17,3 @@ const getWeatherCallback = async (req, res, next) => {
   }
 };
 
-exports.module = { getWeatherCallback }
