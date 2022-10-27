@@ -2,6 +2,33 @@
 
 ---
 
+Number and name of feature: Feature 2: Move Movies into new module
+
+Estimate of time needed to complete: 30 Mins
+
+Start time: 1630
+
+Finish time: 1700
+
+Actual time needed to complete: 30 mins
+
+---
+---
+
+Number and name of feature: Feature 1: Move Weather into new module
+
+Estimate of time needed to complete: 1 Hour
+
+Start time: 1600
+
+Finish time: 1630
+
+Actual time needed to complete: 30 mins
+
+---
+
+---
+
 Number and name of feature: Feature 1: Adding API for weather
 
 Estimate of time needed to complete: 1 Hour
@@ -79,7 +106,7 @@ This project is part of a class requirement for Code Fellows 301 lab-07.
 
 ## [Overview]
 
-<img src="https://github.com/tm-LBenson/city-explorer/blob/main/public/assets/WRRC-lab-07.png?raw=true"
+<img src="https://user-images.githubusercontent.com/105423307/198404279-1b820fbe-c98f-4f20-979d-131dfa2bfed1.png"
      alt="WRRC Diagram"
      style="float: left; margin-right: 10px; width:50%" />
 
