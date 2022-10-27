@@ -9,7 +9,6 @@ const { getWeatherCallback } = require('./weather.js')
 
 
 
-
 /* MIDDLEWARE */
 
 app.use(cors());
@@ -25,10 +24,10 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/weather', () => getWeatherCallback())
+app.get('/weather', getWeatherCallback)
 
 
-app.get('/movies', () => getMoviesCallback())
+app.get('/movies', getMoviesCallback)
 
 
 
