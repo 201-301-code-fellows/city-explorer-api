@@ -1,3 +1,7 @@
+const axios = require('axios')
+require('dotenv').config
+
+
 exports.getMovies = async (cityName) => {
   try {
     const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`)
@@ -6,10 +10,7 @@ exports.getMovies = async (cityName) => {
     }
   }
   catch (error) {
-
-    console.log(error.code)
     const movieError = error
-    console.log('log')
     return movieError
   }
 }
