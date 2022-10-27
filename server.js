@@ -3,9 +3,9 @@ const app = express()
 require('dotenv').config()
 const cors = require('cors');
 const axios = require('axios');
-const { response } = require('express');
 const port = process.env.PORT || 3002
-
+const getMovies = require('./movies.js')
+const getWeather = require('./weather.js')
 
 
 
@@ -17,43 +17,9 @@ app.use(cors());
 app.use(express.static('public'))
 
 /* API CALLS */
-const getWeather = async (latitude, longitude) => {
-  try {
-    const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}`)
-    if (response.status === 200) {
 
-      return response
-    }
 
-  }
 
-  catch (error) {
-
-    console.log(error.code)
-    const weatherError = error
-
-    return weatherError
-  }
-}
-
-const getMovies = async (cityName) => {
-  try {
-    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`)
-    if (response.status === 200) {
-
-      return response
-    }
-
-  }
-
-  catch (error) {
-
-    console.log(error.code)
-    const movieError = error
-    console.log('log')
-    return movieError
-  }
-}
 
 
 
