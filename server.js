@@ -3,7 +3,7 @@ const app = express()
 require('dotenv').config()
 const cors = require('cors');
 const port = process.env.PORT || 3002
-const {  getMoviesCallback } = require('./movies.js')
+const { getMoviesCallback } = require('./movies.js')
 const { getWeatherCallback } = require('./weather.js')
 
 
@@ -25,10 +25,10 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/weather', () => getWeatherCallback)
+app.get('/weather', () => getWeatherCallback())
 
 
-app.get('/movies', () => getMoviesCallback)
+app.get('/movies', () => getMoviesCallback())
 
 
 
