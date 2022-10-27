@@ -1,5 +1,5 @@
 const { getMovies } = require('./APICalls.js')
-const { MovieList } = require('./Classes.js')
+
 
 
 exports.getMoviesCallback = async (req, res, next) => {
@@ -17,3 +17,15 @@ exports.getMoviesCallback = async (req, res, next) => {
 };
 
 
+class MovieList {
+  constructor(movieData) {
+    this.title = movieData.title
+    this.overview = movieData.overview
+    this.votes = movieData.vote_count
+    this.voteAvg = movieData.vote_average
+    this.imgUrl = movieData.poster_path
+    this.popularity = movieData.popularity
+    this.released = movieData.release_date
+    this.id = movieData.id
+  }
+}
