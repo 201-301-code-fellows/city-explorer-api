@@ -36,6 +36,24 @@ const getWeather = async (latitude, longitude) => {
   }
 }
 
+const getMovies = async (cityName) => {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`)
+    if (response.status === 200) {
+
+      return response
+    }
+
+  }
+
+  catch (error) {
+
+    console.log(error.code)
+    const movieError = error
+    console.log('log')
+    return movieError
+  }
+}
 
 
 
@@ -53,14 +71,27 @@ app.get('/weather', async (req, res, next) => {
   try {
     const { lat, lon, ...rest } = req.query
     const weatherData = await getWeather(lat, lon)
-    console.log(weatherData.data.data)
     const dataArray = weatherData.data.data.map(day => {
       return new Forecast(day)
     });
 
     res.status(200).send(dataArray);
   } catch (error) {
-    // if I have an error, this will create a new instance of the Error Object that lives in Express
+    next(error);
+  }
+});
+
+
+app.get('/movies', async (req, res, next) => {
+
+  try {
+    const movieData = await getMovies(req.query.city_name)
+    const dataArray = movieData.data.results.map(movie => {
+      return new MovieList(movie)
+    });
+
+    res.status(200).send(dataArray);
+  } catch (error) {
     next(error);
   }
 });
@@ -73,12 +104,28 @@ app.get('*', (req, res) => {
 });
 
 
+/* Class for data parse */
+
 class Forecast {
   constructor(cityData) {
     this.date = cityData.valid_date;
     this.description = `Low of ${cityData.low_temp}, high of ${cityData.high_temp} with ${cityData.weather.description}`;
   }
 }
+
+class MovieList {
+  constructor(movieData) {
+    this.title = movieData.title
+    this.overview = movieData.overview
+    this.votes = movieData.vote_count
+    this.voteAvg = movieData.vote_average
+    this.imgUrl = movieData.poster_path
+    this.popularity = movieData.popularity
+    this.released = movieData.release_date
+    this.id = movieData.id
+  }
+}
+
 
 
 /* ERROR HANDLE */
