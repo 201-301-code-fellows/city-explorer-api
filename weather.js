@@ -1,22 +1,20 @@
-const axios = require('axios');
+const { getWeather } = require('./APICalls.js')
+const { Forecast } = require('./Classes.js')
 
-const getWeather = async (latitude, longitude) => {
+
+const getWeatherCallback = async (req, res, next) => {
+
   try {
-    const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}`)
-    if (response.status === 200) {
+    const { lat, lon } = req.query
+    const weatherData = await getWeather(lat, lon)
+    const dataArray = weatherData.data.data.map(day => {
+      return new Forecast(day)
+    });
 
-      return response
-    }
-
+    res.status(200).send(dataArray);
+  } catch (error) {
+    next(error);
   }
+};
 
-  catch (error) {
-
-    console.log(error.code)
-    const weatherError = error
-
-    return weatherError
-  }
-}
-
-exports.module = { getWeather }
+exports.module = { getWeatherCallback }
