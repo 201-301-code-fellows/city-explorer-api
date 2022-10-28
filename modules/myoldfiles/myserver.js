@@ -3,7 +3,7 @@ const app = express()
 require('dotenv').config()
 const cors = require('cors');
 const port = process.env.PORT || 3002
-const { getMoviesCallback } = require('./modules/movies.js')
+const { getMoviesCallback } = require('../movies.js')
 const { getWeatherCallback } = require('./weather.js')
 
 

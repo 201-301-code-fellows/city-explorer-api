@@ -1,4 +1,4 @@
-const { getWeather } = require('./APICalls.js')
+const { getWeather } = require('../APICalls.js')
 
 
 
