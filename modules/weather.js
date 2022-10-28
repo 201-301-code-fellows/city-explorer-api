@@ -32,8 +32,8 @@ function parseWeather(weatherData) {
 }
 
 class Weather {
-  constructor(day) {
-    this.forecast = day.weather.description;
-    this.time = day.datetime;
+  constructor(cityData) {
+    this.date = cityData.valid_date;
+    this.description = `Low of ${cityData.low_temp}, high of ${cityData.high_temp} with ${cityData.weather.description}`;
   }
 }
