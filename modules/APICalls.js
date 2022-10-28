@@ -15,22 +15,23 @@ exports.getMovies = async (cityName) => {
   }
 }
 
-exports.getWeather = async (latitude, longitude) => {
-  try {
-    const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}`)
-    if (response.status === 200) {
+/* Weather API call for myweather.js */
+// exports.getWeather = async (latitude, longitude) => {
+//   try {
+//     const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}`)
+//     if (response.status === 200) {
 
-      return response
-    }
+//       return response
+//     }
 
-  }
+//   }
 
-  catch (error) {
+//   catch (error) {
 
-    console.log(error.code)
-    const weatherError = error
+//     console.log(error.code)
+//     const weatherError = error
 
-    return weatherError
-  }
-}
+//     return weatherError
+//   }
+// }
 
