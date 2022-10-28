@@ -1,11 +1,16 @@
 const { getMovies } = require('./APICalls.js');
 const cache = require('./cache.js');
 exports.cacheMovies = async (req, next) => {
+  const fifteenMinute = 900000
+  const hour = fifteenMinute * 4
+  const day = hour * 24
+  const week = day * 7
+ 
   const key = `movies-${req.query.city_name}`
-  if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
-    console.log('Cache hit');
+  if (cache[key] && (Date.now() - cache[key].timestamp < week)) {
+    console.log('Movie Cache hit');
   } else {
-    console.log('Cache miss');
+    console.log('Movie Cache miss');
     cache[key] = {};
     cache[key].timestamp = Date.now();
 
@@ -18,7 +23,7 @@ exports.cacheMovies = async (req, next) => {
       next(error);
     }
   }
-  
+
   return cache[key].data
 }
 
