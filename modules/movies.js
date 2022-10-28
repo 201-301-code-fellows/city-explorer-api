@@ -1,19 +1,11 @@
-const { getMovies } = require('./APICalls.js')
+const cacheMovies = require('./cacheMovies.js')
 
 
 
-exports.getMoviesCallback = async (req, res, next) => {
-
-  try {
-    const movieData = await getMovies(req.query.city_name)
-    const dataArray = movieData.data.results.map(movie => {
-      return new MovieList(movie)
-    });
-
-    res.status(200).send(dataArray);
-  } catch (error) {
-    next(error);
-  }
+exports.getMoviesCallback = (req, res, next) => {
+  const dataFromCache = cacheMovies(req, next)
+  res.status(200).send(dataFromCache);
+ 
 };
 
 
