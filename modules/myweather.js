@@ -3,7 +3,7 @@ const { getWeather } = require('./APICalls.js')
 
 
 exports.getWeatherCallback = async (req, res, next) => {
-  
+
   try {
     const { lat, lon } = req.query
     const weatherData = await getWeather(lat, lon)
