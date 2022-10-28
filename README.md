@@ -7,9 +7,9 @@ Number and name of feature: Feature 2: Add Movies Cache for API
 
 Estimate of time needed to complete: 30 Mins
 
-Start time: 1630
+Start time: 1700
 
-Finish time: 1700
+Finish time: 1730
 
 Actual time needed to complete: 30 mins
 
