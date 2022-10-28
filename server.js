@@ -1,53 +1,35 @@
-const express = require('express')
-const app = express()
-require('dotenv').config()
+'use strict';
+
+require('dotenv').config();
+const express = require('express');
+const app = express();
 const cors = require('cors');
-const port = process.env.PORT || 3002
-const { getMoviesCallback } = require('./movies.js')
-const { getWeatherCallback } = require('./weather.js')
-
-
-
-
-/* MIDDLEWARE */
+const { getMoviesCallback } = require('./modules/movies.js')
+const { getWeather } = require('./modules/weather.js');
 
 app.use(cors());
-app.use(express.static('public'))
 
-/* API CALLS */
-
-
-/* PATHS */
 
 app.get('/', (req, res) => {
-  res.status(200).render('./index.html')
+  res.status(200).send('Server City Explorer API')
 })
-
-
-app.get('/weather', getWeatherCallback)
-
 
 app.get('/movies', getMoviesCallback)
 
-
+app.get('/weather', weatherHandler);
 
 app.get('*', (req, res) => {
   res.status(404).send('This route does not exist');
 });
 
+function weatherHandler(request, response) {
+  const { lat, lon } = request.query;
+  getWeather(lat, lon)
+    .then(summaries => response.send(summaries))
+    .catch((error) => {
+      console.error(error);
+      response.status(500).send('Sorry. Something went wrong!')
+    });
+}
 
-
-
-
-/* ERROR HANDLE */
-
-app.use((e, req, res, next) => {
-  console.log(e.message)
-  res.status(500).send(`${req.query.city_name} was not found!
-  ${e}`);
-});
-
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-})
+app.listen(process.env.PORT, () => console.log(`Server up on ${process.env.PORT}`));
