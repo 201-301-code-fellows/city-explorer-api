@@ -5,8 +5,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const { getMoviesCallback } = require('./modules/movies.js')
-
-const weather = require('./modules/weather.js');
+const { getWeather } = require('./modules/weather.js');
 
 app.use(cors());
 
@@ -25,11 +24,11 @@ app.get('*', (req, res) => {
 
 function weatherHandler(request, response) {
   const { lat, lon } = request.query;
-  weather(lat, lon)
+  getWeather(lat, lon)
     .then(summaries => response.send(summaries))
     .catch((error) => {
       console.error(error);
-      response.status(200).send('Sorry. Something went wrong!')
+      response.status(500).send('Sorry. Something went wrong!')
     });
 }
 
