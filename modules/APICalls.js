@@ -1,5 +1,5 @@
 const axios = require('axios')
-require('dotenv').config
+require('dotenv').config()
 
 
 exports.getMovies = async (cityName) => {
