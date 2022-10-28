@@ -1,5 +1,33 @@
 # [City Explorer Api]
 
+
+---
+
+Number and name of feature: Feature 2: Add Movies Cache for API
+
+Estimate of time needed to complete: 30 Mins
+
+Start time: 1630
+
+Finish time: 1700
+
+Actual time needed to complete: 30 mins
+
+---
+---
+
+Number and name of feature: Feature 1: Add Weater Cache for API
+
+Estimate of time needed to complete: 30 Mins
+
+Start time: 1630
+
+Finish time: 1700
+
+Actual time needed to complete: 30 mins
+
+---
+
 ---
 
 Number and name of feature: Feature 2: Move Movies into new module
@@ -105,6 +133,11 @@ https://lbenson-city-explorer.herokuapp.com/
 This project is part of a class requirement for Code Fellows 301 lab-07.
 
 ## [Overview]
+
+
+<img src="https://user-images.githubusercontent.com/105423307/198741597-aebc4ab3-cbb1-4036-b4ea-eae6c02ce9d5.png"
+     alt="WRRC Diagram"
+     style="float: left; margin-right: 10px; width:50%" />
 
 <img src="https://user-images.githubusercontent.com/105423307/198404279-1b820fbe-c98f-4f20-979d-131dfa2bfed1.png"
      alt="WRRC Diagram"
